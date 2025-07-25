@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="./pages/index.css">
     <title>BR Afora</title>
 </head>
+
 <body>
     <div class="page">
         <!-- Header -->
@@ -56,7 +58,8 @@
 
                     <!-- Fernando de Noronha -->
                     <li class="card">
-                        <img src="./images/fernando-de-noronha.jpeg" alt="Paisagem de Fernando de Noronha" class="card__image">
+                        <img src="./images/fernando-de-noronha.jpeg" alt="Paisagem de Fernando de Noronha"
+                            class="card__image">
                         <div class="card__description">
                             <h3 class="card__description-title">Fernando de Noronha</h3>
                             <button type="button" class="card__description-button"></button>
@@ -92,9 +95,23 @@
 
                 </ul>
             </section>
-
-            <section class="form"></section>
         </main>
+
+        <!-- Form -->
+        <section class="form"></section>
+        <div class="modal">
+            <div class="modal__container">
+                <button class="modal__close-button" type="button">&times;</button>
+                <h2 class="modal__title">Editar perfil</h2>
+                <form class="modal__form" id="profile-form">
+                    <input type="text" class="modal__input" id="profile-name" name="name" placeholder="Nome" required>
+                    <input type="text" class="modal__input" id="profile-description" name="name" placeholder="Sobre mim"
+                        required>
+                    <button type="submit" class="modal__submit-button">Salvar</button>
+                </form>
+            </div>
+        </div>
+        </section>
 
         <!-- Footer -->
         <footer class="footer">
@@ -103,4 +120,5 @@
     </div>
     <script src="./scripts/script.js"></script>
 </body>
+
 </html>
