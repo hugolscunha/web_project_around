@@ -32,8 +32,7 @@
     font-size: 40px;
     color: #fff;
     background-color: transparent;
-    border-style: none;
-    
+    border-style: none; 
 }
 
 .modal__title {
@@ -66,4 +65,16 @@
     font-size: 18px;
     font-weight: 400;
     line-height: 100%;
+}
+
+@media screen and (max-width: 320px) {
+    .modal {
+        left: auto;
+        width: 282px;
+    }
+
+    .modal__close-button {
+        top: -60px;
+        right: -10px;
+    }
 }
