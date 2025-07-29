@@ -18,11 +18,6 @@
 
 @media screen and (max-width: 320px) {
   .header {
-    
-    padding: 28px 100px 32px 8px;
-  }
-
-  .header__title {
-    font-size: 24px;
+    padding: 28px 108px 32px 27px;
   }
 }
