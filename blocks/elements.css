@@ -3,6 +3,7 @@
     margin: 0 auto;
     color: #000;
     margin-top: 50px;
+    
 }
 
 .elements__list {
@@ -10,9 +11,12 @@
     margin: 0 auto;
     padding: 0;
     list-style: none;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, 282px);
+    grid-template-rows: auto;
     gap: 21px 17px;
+    width: 100%;
+    max-width: 880px;
+    justify-content: center;
 }
 
 .card {
@@ -61,8 +65,3 @@
     background-image: url("../images/like-button-hover.svg");
 }
 
-@media screen and (max-width: 320px) {
-    .elements__list {
-        grid-template-columns: 1fr;
-    }
-}

@@ -71,7 +71,7 @@
     opacity: 60%;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 1129px) {
     .profile {
         padding: 0;
         padding-top: 42px;
