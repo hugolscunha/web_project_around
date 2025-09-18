@@ -28,6 +28,7 @@
     font-size: 48px;
     font-weight: 500;
     line-height: 48px;
+    text-transform: capitalize;
 }
 
 .profile__edit-icon {
@@ -46,6 +47,7 @@
     font-weight: 400;
     font-size: 18px;
     margin: 16px 0;
+    text-transform: capitalize;
 }
 
 .profile__add-button {
