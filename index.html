@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
+    <!-- Define a codificação de caracteres como UTF-8 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Lugares pelos Estados Unidos da América">
@@ -18,83 +18,38 @@
         <header class="header">
             <h1 class="header__title">Around <span class="header__title-small">The Brazil</span></h1>
         </header>
-
         <main class="content">
-            <!-- Profile section -->
             <section class="profile">
-                <img src="./images/avatar-hugo.png" alt="Imagem de uma pessoa" class="profile__avatar">
-                <div class="profile__info">
-                    <div class="profile__edit-button">
+                <div class="profile__content">
+                    <!-- Imagem de avatar do perfil -->
+                    <img class="profile__avatar" src="./images/avatar-hugo.png" alt="Imagem de uma pessoa">
+                    <div class="profile__info">
+                        <!-- Nome do Perfil -->
                         <h2 class="profile__name">Hugo Cunha</h2>
-                        <a class="profile__edit-icon"></a>
+                        <!-- Descrição do perfil -->
+                        <p class="profile__description">Explorador</p>
                     </div>
-                    <p class="profile__description">Explorador</p>
+                    <!-- Botão para editar o perfil -->
+                    <button class="profile__button profile__button_type_edit" type="button" id="edit-button">
+                        <img class="profile__icon profile__icon_type_edit" src="./images/profile-edit-button.svg"
+                            alt="Botão de editar">
+                    </button>
                 </div>
-                <button class="profile__add-button" type="button">
-                    <i class="profile__add-icon"></i>
+                <!-- Botão para adicionar novo item -->
+                <button class="profile__button profile__button_type_add" type="button" id="add-button">
+                    <img class="profile__icon profile__icon_type_add" src="./images/profile-add-button.svg" alt="Botão de adicionar">
                 </button>
             </section>
-
-            <!-- Elements section -->
             <section class="elements">
-                <ul class="elements__list">
-
-                    <!-- Rio de Janeiro-->
-                    <li class="card">
-                        <img src="./images/rio-de-janeiro.png" alt="Paisagem do Rio de Janeiro" class="card__image">
-                        <div class="card__description">
-                            <h3 class="card__description-title">Rio de Janeiro</h3>
-                            <button type="button" class="card__description-button"></button>
+                <div class="elements__cards">
+                    <!-- Template para novos cards -->
+                     <template class="elements__template">
+                        <div class="elements__card">
+                            
                         </div>
-                    </li>
-
-                    <!-- Manaus -->
-                    <li class="card">
-                        <img src="./images/manaus.png" alt="Paisagem de Manaus" class="card__image">
-                        <div class="card__description">
-                            <h3 class="card__description-title">Manaus</h3>
-                            <button type="button" class="card__description-button"></button>
-                        </div>
-                    </li>
-
-                    <!-- Fernando de Noronha -->
-                    <li class="card">
-                        <img src="./images/fernando-de-noronha.png" alt="Paisagem de Fernando de Noronha"
-                            class="card__image">
-                        <div class="card__description">
-                            <h3 class="card__description-title">Fernando de Noronha</h3>
-                            <button type="button" class="card__description-button"></button>
-                        </div>
-                    </li>
-
-                    <!-- Gramado -->
-                    <li class="card">
-                        <img src="./images/gramado.png" alt="Paisagem de Gramado" class="card__image">
-                        <div class="card__description">
-                            <h3 class="card__description-title">Gramado</h3>
-                            <button type="button" class="card__description-button"></button>
-                        </div>
-                    </li>
-
-                    <!-- São Paulo -->
-                    <li class="card">
-                        <img src="./images/são-paulo.png" alt="Paisagem de São Paulo" class="card__image">
-                        <div class="card__description">
-                            <h3 class="card__description-title">São Paulo</h3>
-                            <button type="button" class="card__description-button"></button>
-                        </div>
-                    </li>
-
-                    <!-- Salvador -->
-                    <li class="card">
-                        <img src="./images/salvador.png" alt="Paisagem de Salvador" class="card__image">
-                        <div class="card__description">
-                            <h3 class="card__description-title">Salvador</h3>
-                            <button type="button" class="card__description-button"></button>
-                        </div>
-                    </li>
-
-                </ul>
+                     </template>
+                </div>
+                
             </section>
         </main>
 

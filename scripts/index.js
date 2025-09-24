@@ -19,14 +19,14 @@ function hanldeProfileFormSubmit (evt) {
 
 // Open modal function
 function openModal() {
-    editProfileModal.classList.add('modal__opened');
+    editProfileModal.classList.add('modal__opened'); // Adiciona a classe para mostrar o popup
     profileNameInput.value = profileName.textContent.trim();
     profileDescriptionInput.value = profileDescription.textContent.trim();
 }
 
 // Close modalfuntion
 function closeModal() {
-    editProfileModal.classList.remove('modal__opened');   
+    editProfileModal.classList.remove('modal__opened'); // Remove a classe para fechar o popup
 }
 
 // Event listeners
