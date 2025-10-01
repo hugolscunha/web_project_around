@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <!-- Define a codificação de caracteres como UTF-8 -->
     <meta charset="UTF-8">
@@ -37,42 +38,89 @@
                 </div>
                 <!-- Botão para adicionar novo item -->
                 <button class="profile__button profile__button_type_add" type="button" id="add-button">
-                    <img class="profile__icon profile__icon_type_add" src="./images/profile-add-button.svg" alt="Botão de adicionar">
+                    <img class="profile__icon profile__icon_type_add" src="./images/profile-add-button.svg"
+                        alt="Botão de adicionar">
                 </button>
             </section>
             <section class="elements">
                 <div class="elements__cards">
                     <!-- Template para novos cards -->
-                     <template class="elements__template">
-                        <div class="elements__card">
-                            
+                    <template class="elements__template">
+                        <div class="elements__card">\
+                            <!-- Botão da imagem do card -->
+                            <button class="elements__image-button">
+                                <img class="elemenmts__image" src="" alt="Imagem">
+                            </button>
+                            <!-- Botão para deletar card -->
+                            <button class="elements__button elements__button_type_trash" type="button">
+                                <img class="elemenmts__icon elements__icon_type_trash-cap" src="./images/trashcap.svg"
+                                    alt="Lixeira">
+                                <img class="elemenmts__icon elements__icon_type_trash-can" src="./images/trashcan.svg"
+                                    alt="Lixeira">
+                            </button>
+                            <div class="elements__title">
+                                <!-- Título do card -->
+                                <h3 class="elements__text"></h3>
+                                <!-- Botão de like -->
+                                <button class="elements__icon elements__icon_type_like-icon">
+                                    <img src="./images/like.svg" alt="Botão de like">
+                                </button>
+                            </div>
+                            <!-- Janela de vizualização da imagem -->
+                            <div class="elements__window">
+                                <div class="elements__container">
+                                    <!-- Botão para fechar a janela -->
+                                    <button class="elements__icon elements__buttonm_type_close" type="button" id="window-close-button">
+                                        <img class="elements__icon elemenmts__icon_type_close" src="./images/popup-close-icon.svg" alt="Closed">
+                                    </button>
+                                    <img class="elements__window-image" src="" alt="Imagem">
+                                    <h3 class="elements__window-name"></h3>
+                                </div>
+                            </div>
                         </div>
-                     </template>
+                    </template>
                 </div>
-                
             </section>
         </main>
-
-        <!-- Form -->
-        <section class="form"></section>
-        <div class="modal">
-            <div class="modal__container">
-                <button class="modal__close-button" type="button">&times;</button>
-                <h2 class="modal__title">Editar perfil</h2>
-                <form class="modal__form" id="profile-form">
-                    <input type="text" class="modal__input" id="profile-name" name="name" placeholder="Nome" required>
-                    <input type="text" class="modal__input" id="profile-description" name="name" placeholder="Sobre mim"
-                        required>
-                    <button type="submit" class="modal__submit-button">Salvar</button>
+        <footer class="footer">
+            <!-- Copyright do site -->
+            <p class="footer__copyright">&copy; 2025 Around The Brazil / Hugo L. S. da Cunha</p>
+        </footer>
+        <!-- Popup de edição de perfil -->
+        <div class="popup" id="profile">
+            <div class="profile__container">
+                <!-- Botão para fechar popup-->
+                <button class="popup__button popup__button_type_close" type="button">
+                    <img class="popup__icon" src="./images/popup-close-icon.svg" alt="Fechar">
+                </button>
+                <!-- Título de edição de perfil-->
+                <h2 class="popup__title">Editar Perfil</h2>
+                <!-- Formulário de edição de perfil-->
+                <form class="popup__form">
+                    <fieldset class="popup__name">
+                        <input
+                        class="popup__item popup__item_type_name"
+                        type="text"
+                        name="name"
+                        placeholder="Name"
+                        min="2"
+                        maxlength="40"
+                        required
+                        >
+                        <input
+                        class="popup__item popup__item_type_about"
+                        type="text"
+                        name="name"
+                        placeholder="About me"
+                        minlength="2"
+                        maxlength="100"
+                        required
+                        >
+                        <button class="popup__button popup__button__type_send" type="submit">Guardar</button>
+                    </fieldset>
                 </form>
             </div>
         </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <p class="footer__copyright">&copy; 2025 Around The Brazil</p>
-        </footer>
     </div>
     <script src="./scripts/index.js"></script>
 </body>
