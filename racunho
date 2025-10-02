@@ -1,0 +1,35 @@
+<!-- Popup de edição de perfil -->
+        <div class="popup" id="profile">
+            <div class="profile__container">
+                <!-- Botão para fechar popup-->
+                <button class="popup__button popup__button_type_close" type="button">
+                    <img class="popup__icon" src="./images/popup-close-icon.svg" alt="Fechar">
+                </button>
+                <!-- Título de edição de perfil-->
+                <h2 class="popup__title">Editar Perfil</h2>
+                <!-- Formulário de edição de perfil-->
+                <form class="popup__form">
+                    <fieldset class="popup__name">
+                        <input
+                        class="popup__item popup__item_type_name"
+                        type="text"
+                        name="name"
+                        placeholder="Name"
+                        min="2"
+                        maxlength="40"
+                        required
+                        >
+                        <input
+                        class="popup__item popup__item_type_about"
+                        type="text"
+                        name="name"
+                        placeholder="About me"
+                        minlength="2"
+                        maxlength="100"
+                        required
+                        >
+                        <button class="popup__button popup__button__type_send" type="submit">Guardar</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
