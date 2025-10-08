@@ -45,37 +45,69 @@ const initialCards = [
     {
         name: "Fernando de Noronha",
         link: "https://images.pexels.com/photos/11159713/pexels-photo-11159713.jpeg",
-    }
-
+    },
     {
         name: "Gramado",
         link: "https://www.pexels.com/pt-br/foto/nova-petropolis-rio-grande-do-sul-brasil-18171957/",
-    }
-
+    },
     {
         name: "Manaus",
         link: "https://images.pexels.com/photos/29759408/pexels-photo-29759408.jpeg",
-    }
-
+    },
     {
         name: "Rio de Janeiro",
         link: "https://images.pexels.com/photos/1458036/pexels-photo-1458036.jpeg",
-    }
-
+    },
     {
         name: "Salvador",
         link: "https://images.pexels.com/photos/31792594/pexels-photo-31792594.jpeg",
-    }
-
+    },
     {
         name: "São Paulo",
         link: "https://images.pexels.com/photos/72479/pexels-photo-72479.jpeg",
     }
-]
+];
 
 // Seleciona o template de cartão e área de onde os cartões serão adicionados
 const template = document.querySelector("elements__template");
 const cardArea = document.querySelector("elements__cards");
 
+// Função para criar novo card
+function createCard(name, link) {
+  const card = template.cloneNode(true).content.querySelector(".elements__card");
+  const cardImage = card.querySelector(".elements__image");
+  const cardText = card.querySelector(".elements__text");
+  const cardTrashButton = card.querySelector(".elements__button_type_trash");
+  const cardLikeButton = card.querySelector(".elements__button_type_like");
+  const cardWindow = card.querySelector(".elements__window");
+  const buttonCardImage = card.querySelector(".elements__image-button");
+  const cardWindowImage = card.querySelector(".elements__window-image");
+  const cardWindowName = card.querySelector(".elements__window-name");
+  const windowCloseButton = card.querySelector("#window-close-button");
+
+
+// Define as propriedades do cartão
+cardImage.src = link;
+cardText.textContent = name;
+cardImage.alt = name;
+cardWindowImage.src = link;
+cardWindowImage.alt = name;
+cardWindowName.textContent = name;
+
+// Adiciona evento de clique no botão de ecluir cartão
+cardTrashButton.addEventListener("click", function (){
+    card.remove();
+});
+
+
+
+
+// Retorna o cartão criado
+return card;
+}
+
 // Adiciona os cartões iniciais na área de cartões
-initialCards.forEach()
+initialCards.forEach(function (element) {
+  const firstcards = createCard(element.name, element.link);
+  cardArea.append(firstcards);
+});
