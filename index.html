@@ -2,10 +2,9 @@
 <html lang="pt-br">
 
 <head>
-    <!-- Define a codificação de caracteres como UTF-8 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Lugares pelos Estados Unidos da América">
+    <meta name="description" content="Lugares pelo Brasil">
     <meta name="author" content="Hugo Cunha">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <link rel="stylesheet" href="./pages/index.css">
@@ -19,63 +18,57 @@
         <header class="header">
             <h1 class="header__title">Around <span class="header__title-small">The Brazil</span></h1>
         </header>
+
         <main class="content">
             <section class="profile">
                 <div class="profile__content">
-                    <!-- Imagem de avatar do perfil -->
                     <img class="profile__avatar" src="./images/avatar-hugo.png" alt="Imagem de uma pessoa">
                     <div class="profile__info">
-                        <!-- Nome do Perfil -->
                         <h2 class="profile__name">Hugo Cunha</h2>
-                        <!-- Descrição do perfil -->
                         <p class="profile__description">Explorador</p>
                     </div>
-                    <!-- Botão para editar o perfil -->
                     <button class="profile__button profile__button_type_edit" type="button" id="edit-button">
-                        <img class="profile__icon profile__icon_type_edit" src="./images/profile-edit-button.svg"
-                            alt="Botão de editar">
+                        <img class="profile__icon profile__icon_type_edit"
+                            src="./images/profile-edit-button.svg" alt="Editar perfil">
                     </button>
                 </div>
-                <!-- Botão para adicionar novo item -->
+
                 <button class="profile__button profile__button_type_add" type="button" id="add-button">
-                    <img class="profile__icon profile__icon_type_add" src="./images/profile-add-button.svg"
-                        alt="Botão de adicionar">
+                    <img class="profile__icon profile__icon_type_add"
+                        src="./images/profile-add-button.svg" alt="Adicionar novo lugar">
                 </button>
             </section>
+
             <section class="elements">
                 <div class="elements__cards">
-                    <!-- Template para novos cards -->
                     <template class="elements__template">
-                        <div class="elements__card">\
-                            <!-- Botão da imagem do card -->
+                        <div class="elements__card">
                             <button class="elements__image-button">
-                                <img class="elemenmts__image" src="" alt="Imagem">
+                                <img class="elements__image" src="" alt="Imagem do lugar">
                             </button>
-                            <!-- Botão para deletar card -->
+
                             <button class="elements__button elements__button_type_trash" type="button">
-                                <img class="elemenmts__icon elements__icon_type_trash-cap" src="./images/trashcap.svg"
-                                    alt="Lixeira">
-                                <img class="elemenmts__icon elements__icon_type_trash-can" src="./images/trashcan.svg"
-                                    alt="Lixeira">
+                                <img class="elements__icon elements__icon_type_trash-cap"
+                                    src="./images/trashcap.svg" alt="Excluir">
+                                <img class="elements__icon elements__icon_type_trash-can"
+                                    src="./images/trashcan.svg" alt="Excluir">
                             </button>
+
                             <div class="elements__title">
-                                <!-- Título do card -->
                                 <h3 class="elements__text"></h3>
-                                <!-- Botão de like -->
-                                <button class="elements__icon elements__icon_type_like-icon">
-                                    <img src="./images/like.svg" alt="Botão de like">
+                                <button class="elements__button elements__button_type_like" type="button">
+                                    <img src="./images/like.svg" alt="Curtir">
                                 </button>
                             </div>
-                            <!-- Janela de vizualização da imagem -->
+
                             <div class="elements__window">
                                 <div class="elements__container">
-                                    <!-- Botão para fechar a janela -->
-                                    <button class="elements__icon elements__buttonm_type_close" type="button"
+                                    <button class="elements__button elements__button_type_close" type="button"
                                         id="window-close-button">
-                                        <img class="elements__icon elemenmts__icon_type_close"
-                                            src="./images/popup-close-icon.svg" alt="Closed">
+                                        <img class="elements__icon elements__icon_type_close"
+                                            src="./images/popup-close-icon.svg" alt="Fechar">
                                     </button>
-                                    <img class="elements__window-image" src="" alt="Imagem">
+                                    <img class="elements__window-image" src="" alt="Imagem ampliada">
                                     <h3 class="elements__window-name"></h3>
                                 </div>
                             </div>
@@ -84,47 +77,43 @@
                 </div>
             </section>
         </main>
+
         <footer class="footer">
-            <!-- Copyright do site -->
-            <p class="footer__copyright">&copy; 2025 Around The Brazil / Hugo L. S. da Cunha</p>
+            <p class="footer__copyright">
+                &copy; 2025 Around The Brazil / Hugo L. S. da Cunha
+            </p>
         </footer>
-        <!-- Popup de edição de perfil -->
+
         <div class="popup" id="profile">
             <div class="popup__container">
-                <!-- Botão para fechar o popup -->
                 <button class="popup__button popup__button_type_close" type="button">
                     <img class="popup__icon" src="./images/popup-close-icon.svg" alt="Fechar" />
                 </button>
-                <!-- Título do popup -->
                 <h2 class="popup__title">Editar Perfil</h2>
-                <!-- Formulário de edição de perfil -->
                 <form class="popup__form">
-                    <fieldset class="popup__name">
-                        <input class="popup__item popup__item_type_name" type="text" name="name" placeholder="Nome"
-                            minlength="2" maxlength="40" required />
-                        <input class="popup__item popup__item_type_about" type="text" name="name"
+                    <fieldset class="popup__name" name="edit-profile">
+                        <input class="popup__item popup__item_type_name" type="text" name="profile-name"
+                            placeholder="Nome" minlength="2" maxlength="40" required />
+                        <input class="popup__item popup__item_type_about" type="text" name="profile-about"
                             placeholder="Sobre mim" minlength="2" maxlength="200" required />
                         <button class="popup__button popup__button_type_send" type="submit">Guardar</button>
                     </fieldset>
                 </form>
             </div>
         </div>
-        <!-- Popup de adição de novo lugar -->
+
         <div class="popup" id="add-popup">
             <div class="popup__container">
-                <!-- Botão para fechar o popup -->
                 <button class="popup__button popup__button_type_close" type="button" id="close-add-popup">
                     <img class="popup__icon" src="./images/popup-close-icon.svg" alt="Fechar" />
                 </button>
-                <!-- Título do popup -->
                 <h2 class="popup__title">Novo Lugar</h2>
-                <!-- Formulário de adição de novo lugar -->
                 <form class="popup__form" id="add-form">
-                    <fieldset class="popup__name">
-                        <input class="popup__item popup__item_type_name" id="place-input" type="text" name="name"
+                    <fieldset class="popup__name" name="new-place">
+                        <input class="popup__item popup__item_type_name" id="place-input" type="text" name="place"
                             placeholder="Título" minlength="2" maxlength="40" required />
-                        <input class="popup__item popup__item_type_about" id="link-input" type="text" name="name"
-                            placeholder="Link da imagem" minlength="2" required />
+                        <input class="popup__item popup__item_type_about" id="link-input" type="url" name="link"
+                            placeholder="Link da imagem" required />
                         <button class="popup__button popup__button_type_send" id="add-card-button"
                             type="submit">Guardar</button>
                     </fieldset>
@@ -132,8 +121,7 @@
             </div>
         </div>
     </div>
-    </div>
+
     <script src="./scripts/index.js"></script>
 </body>
-
 </html>
