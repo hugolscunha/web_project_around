@@ -140,7 +140,7 @@ function changeProfile(evt) {
 
 // Seleciona o botão de enviar do popup de perfil e o formulário do popup
 const submitButton = document.querySelector(".popup__button_type_send");
-const formElement = formElement.querySelector(".popup__container");
+const formElement = document.querySelector(".popup__container");
 
 // Adiciona evento de submissão do formulário de perfil para alterar o perfil
 formElement.addEventListener("submit", changeProfile);
