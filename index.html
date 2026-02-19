@@ -40,12 +40,21 @@
                     <img class="profile__icon profile__icon_type_add" src="./images/profile-add-button.svg" alt="Botão de adicionar">
                 </button>
             </section>
+            
             <section class="elements">
                 <div class="elements__cards">
                     <!-- Template para novos cards -->
-                     <template class="elements__template">
-                        <div class="elements__card">
-                            
+                     <template class="card__template"> 
+                        <div class="card">
+                            <div class="card__image-container">
+                                <img class="card__image" src="" alt="">
+                                <button class="card__delete-button"><img src="./images/trashcap.svg" alt=""> <img src="./images/trashcan.svg" alt=""></button>                                
+                            </div>
+
+                            <div class="card__footer">
+                                <h2 class="card__title"></h2>
+                                <button class="card__like-button"><img src="" alt=""> </button>
+                            </div>
                         </div>
                      </template>
                 </div>

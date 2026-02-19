@@ -1,24 +1,17 @@
 .header {
     margin: 0 auto;
-    padding: 45px 200px 40px;
+    
     border-bottom:  1px solid #545454;
 }
 
 .header__title {
     font-weight: 500;
-    font-size: 28px;
-    margin: 0;
+    font-size: 46px;
+    margin: 45px auto 41px auto;
 }
 
 .header__title-small{
     font-weight: 400;
-    font-size: 12px;
+    font-size: 16px;
     vertical-align: text-top;
-}
-
-@media screen and (max-width: 320px) {
-  .header {
-    padding: 28px 108px 32px 27px;
-    justify-content: center;
-  }
 }
