@@ -1,13 +1,13 @@
 .header {
-    margin: 0 auto;
-    
+    margin: 45px 200px 40px;
+    padding: 0px 0px 41px;
     border-bottom:  1px solid #545454;
 }
 
 .header__title {
     font-weight: 500;
-    font-size: 46px;
-    margin: 45px auto 41px auto;
+    font-size: 42px;
+    margin: 0;
 }
 
 .header__title-small{

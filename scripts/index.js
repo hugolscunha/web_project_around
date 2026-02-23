@@ -1,82 +1,165 @@
-// Variaveis Profile e Form
-let editProfileButton = document.querySelector('.profile__button_type_edit');
-let editProfileForm = document.querySelector('.modal');
-let closeModalButton = document.querySelector('.modal__close-button');
+// Seleciona o botão de edição e o popup de perfil
+const editButton = document.querySelector("#edit-button"); // Botão para abrir popup de edição
+const editPopup = document.querySelector("#profile"); // Popup de edição de perfil
 
-
-//EventListeners/Função para abrir o formulário
-editProfileButton.addEventListener("click", (abrirFormulario)=>{ 
-    editProfileForm.classList.add("modal__opened");
-});
-
-//EventListener/Função para fechar formulário
-closeModalButton.addEventListener("click", (fecharFormulario) => {
-    editProfileForm.classList.remove("modal__opened");
-});
-
-
-// Variaveis do template dos cards
-const template = document.querySelector(".card__template").content;
-const templateContainer = document.querySelector(".elements__cards");
-
-const cardsData = [
-    {
-        title: "Rio de Janeiro",
-        image: "https://images.pexels.com/photos/1118877/pexels-photo-1118877.jpeg"
-    },
-    {
-        title: "Salvador",
-        image: "https://images.pexels.com/photos/31792594/pexels-photo-31792594.jpeg"
-    },
-    {
-        title: "São Paulo",
-        image: "https://images.pexels.com/photos/1535775/pexels-photo-1535775.jpeg"
-    },
-    {
-        title: "Foz do Iguaçu",
-        image: "https://images.pexels.com/photos/1296396/pexels-photo-1296396.jpeg"
-    },
-    {
-        title: "Manaus",
-        image: "https://images.pexels.com/photos/7903925/pexels-photo-7903925.jpeg"
-    },
-    {
-        title: "Bonito",
-        image: "https://images.pexels.com/photos/861879/pexels-photo-861879.png"
-    }
-]
-
-function createCard(data) {
-    const card = template.cloneNode(true);
-
-    const cardImage = card.querySelector(".card__image");
-    const cardTitle = card.querySelector(".card__title");
-    // const cardDeleteButton = card.querySelector(".card__delete-button");
-    // const cardLikeButton = card.querySelector(".card__like-button");
-
-    // Coloca
-    cardImage.src = data.image;
-    cardImage.alt = data.title;
-    cardTitle.textContent = data.title;
-
-    return card
+// Função de abrir o popup de edição de perfil
+function showPopup() {
+  editPopup.classList.add("popup__opened");
 }
 
-cardsData.forEach(data => {
-    const cardElement = createCard(data);
-    templateContainer.append(cardElement);
+// Evento de clique no botão de edição de perfil
+editButton.addEventListener("click", showPopup);
+
+// Seleciona o botão de adicionar lugar e o popup de novo lugar
+const addButton = document.querySelector("#add-button");
+const addPopup = document.querySelector("#add-popup");
+
+// Função de abrir o popup de novo Card
+function showAddPopup() {
+  addPopup.classList.add("popup__opened");
+}
+
+// Evento de clique no botão de adicionar novo lugar
+addButton.addEventListener("click", showAddPopup);
+
+// Seleciona os botões de fechar dos popups
+const closeEditButton = editPopup.querySelector(".popup__button_type_close");
+const closeAddButton = addPopup.querySelector(".popup__button_type_close");
+
+// Funções de fechar popups
+function closeEditPopup() {
+  editPopup.classList.remove("popup__opened");
+}
+function closeAddPopup() {
+  addPopup.classList.remove("popup__opened");
+}
+
+// Eventos de clique nos botões de fechar
+closeEditButton.addEventListener("click", closeEditPopup);
+closeAddButton.addEventListener("click", closeAddPopup);
+
+// -------------------------
+// Cards iniciais
+// -------------------------
+const initialCards = [
+  {
+    name: "Fernando de Noronha",
+    link: "https://images.pexels.com/photos/11159713/pexels-photo-11159713.jpeg",
+  },
+  {
+    name: "Gramado",
+    link: "https://images.pexels.com/photos/18171957/pexels-photo-18171957.jpeg",
+  },
+  {
+    name: "Manaus",
+    link: "https://images.pexels.com/photos/29759408/pexels-photo-29759408.jpeg",
+  },
+  {
+    name: "Rio de Janeiro",
+    link: "https://images.pexels.com/photos/1458036/pexels-photo-1458036.jpeg",
+  },
+  {
+    name: "Salvador",
+    link: "https://images.pexels.com/photos/31792594/pexels-photo-31792594.jpeg",
+  },
+  {
+    name: "São Paulo",
+    link: "https://images.pexels.com/photos/72479/pexels-photo-72479.jpeg",
+  },
+];
+
+// Seleciona o template e o container de cards
+const template = document.querySelector(".elements__template");
+const cardArea = document.querySelector(".elements__cards");
+
+// Função para criar novo card
+function createCard(name, link) {
+    const cardElement = template.content.querySelector(".elements__card").cloneNode(true);
+
+  const cardImage = cardElement.querySelector(".elements__image");
+  const cardText = cardElement.querySelector(".elements__text");
+  const cardTrashButton = cardElement.querySelector(".elements__button_type_trash");
+  const cardLikeButton = cardElement.querySelector(".elements__button_type_like");
+  const cardWindow = cardElement.querySelector(".elements__window");
+  const buttonCardImage = cardElement.querySelector(".elements__image-button");
+  const cardWindowImage = cardElement.querySelector(".elements__window-image");
+  const cardWindowName = cardElement.querySelector(".elements__window-name");
+  const windowCloseButton = cardElement.querySelector("#window-close-button");
+
+  // Define conteúdo do card
+  cardImage.src = link;
+  cardImage.alt = name;
+  cardText.textContent = name;
+  cardWindowImage.src = link;
+  cardWindowImage.alt = name;
+  cardWindowName.textContent = name;
+
+  // Evento de deletar
+  cardTrashButton.addEventListener("click", () => cardElement.remove());
+
+  // Evento de curtir
+  cardLikeButton.addEventListener("click", () => {
+    cardLikeButton.classList.toggle("elements__button_type_like-active");
+  });
+
+  // Abrir janela de imagem
+  buttonCardImage.addEventListener("click", () => {
+    cardWindow.classList.add("elements__window_opened");
+  });
+
+  // Fechar janela de imagem
+  windowCloseButton.addEventListener("click", () => {
+    cardWindow.classList.remove("elements__window_opened");
+  });
+
+  return cardElement;
+}
+
+// Adiciona os cartões iniciais
+initialCards.forEach(({ name, link }) => {
+  const card = createCard(name, link);
+  cardArea.append(card);
 });
 
+// -------------------------
+// Edição de perfil
+// -------------------------
+function changeProfile(evt) {
+  evt.preventDefault();
 
+  const nameInput = document.querySelector(".popup__item_type_name");
+  const aboutInput = document.querySelector(".popup__item_type_about");
+  const profileName = document.querySelector(".profile__name");
+  const profileAbout = document.querySelector(".profile__description");
 
+  profileName.textContent = nameInput.value;
+  profileAbout.textContent = aboutInput.value;
 
+  closeEditPopup();
+}
 
+// Seleciona o botão de enviar do popup de perfil e o formulário do popup
+const submitButton = document.querySelector(".popup__button_type_send");
+const formElement = document.querySelector(".popup__container");
 
+// Adiciona evento de submissão do formulário de perfil para alterar o perfil
+formElement.addEventListener("submit", changeProfile);
 
+// -------------------------
+// Adicionar novo lugar
+// -------------------------
+const addForm = document.querySelector("#add-form");
 
+addForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  const nameInput = document.querySelector("#place-input");
+  const linkInput = document.querySelector("#link-input");
 
-let formElement = document.querySelector('.modal__form');
-let profileNameInput = document.querySelector('#profile-name'); // Input de nome
-let profileDescriptionInput = document.querySelector('#profile-description'); // Input de descrição
-let profileName = document.querySelector('.profile__name');
-let profileDescription = document.querySelector('.profile__description');
+  const newCard = createCard(nameInput.value, linkInput.value);
+  cardArea.prepend(newCard);
+
+  // Limpa campos e fecha popup
+  nameInput.value = "";
+  linkInput.value = "";
+  closeAddPopup();
+});

@@ -5,14 +5,11 @@ body {
 }
 
 .page {
+    min-height: 100vh;
     max-width: 1280px;
     margin: 0 auto;
+    font-weight: 400;
 }
 
-@media screen and (max-width: 320px) {
-    .page {
-    max-width: 320px;
-    padding: 0 19px;
-  }
-}
+
 
