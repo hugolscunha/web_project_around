@@ -1,45 +1,85 @@
-// Seleciona o botão de edição e o popup de perfil
-const editButton = document.querySelector("#edit-button"); // Botão para abrir popup de edição
-const editPopup = document.querySelector("#profile"); // Popup de edição de perfil
+//SEÇÃO PROFILE EDIT
 
-// Função de abrir o popup de edição de perfil
-function showPopup() {
-  editPopup.classList.add("popup__opened");
-}
+// Variáveis da sessão profile
+const editProfilePopup = document.querySelector("#profile"); // Variável da janela popup de edição de perfil(hidden)
+const editProfileButton = document.querySelector("#edit-button"); // Botão com simbolo de caneta para abrir popup de edição
+const closeEditButton = editProfilePopup.querySelector(".popup__button_type_close"); // Botão de fechar o popup
 
-// Evento de clique no botão de edição de perfil
-editButton.addEventListener("click", showPopup);
+// Função / EventListener de abrir o popup de edição de perfil
+editProfileButton.addEventListener("click", showProfilePopup => {
+  editProfilePopup.classList.add("popup__opened");
+});
 
-// Seleciona o botão de adicionar lugar e o popup de novo lugar
-const addButton = document.querySelector("#add-button");
-const addPopup = document.querySelector("#add-popup");
-
-// Função de abrir o popup de novo Card
-function showAddPopup() {
-  addPopup.classList.add("popup__opened");
-}
-
-// Evento de clique no botão de adicionar novo lugar
-addButton.addEventListener("click", showAddPopup);
-
-// Seleciona os botões de fechar dos popups
-const closeEditButton = editPopup.querySelector(".popup__button_type_close");
-const closeAddButton = addPopup.querySelector(".popup__button_type_close");
-
-// Funções de fechar popups
-function closeEditPopup() {
-  editPopup.classList.remove("popup__opened");
-}
-function closeAddPopup() {
-  addPopup.classList.remove("popup__opened");
-}
-
-// Eventos de clique nos botões de fechar
-closeEditButton.addEventListener("click", closeEditPopup);
-closeAddButton.addEventListener("click", closeAddPopup);
+// Função / EventListener de fechar popup de edição de perfil
+closeEditButton.addEventListener("click", closeProfilePopup => {
+  editProfilePopup.classList.remove("popup__opened");
+});
 
 // -------------------------
-// Cards iniciais
+// Edição de perfil
+// -------------------------
+
+// Seleciona o botão de enviar do popup de perfil e o formulário do popup
+const submitButton = document.querySelector(".popup__button_type_send");
+const formElement = document.querySelector(".popup__container");
+
+// Adiciona evento de submissão do formulário de perfil para alterar o perfil
+formElement.addEventListener("submit", changeProfile);
+function changeProfile(evt) {
+  evt.preventDefault();
+
+  const nameInput = document.querySelector(".popup__item_type_name");
+  const aboutInput = document.querySelector(".popup__item_type_about");
+  const profileName = document.querySelector(".profile__name");
+  const profileAbout = document.querySelector(".profile__description");
+
+  profileName.textContent = nameInput.value;
+  profileAbout.textContent = aboutInput.value;
+
+  closeEditProfilePopup();
+}
+//----------------------------------------------------------------------------------
+
+//SEÇÃO ADD CARD
+
+// Seleciona o botão de adicionar lugar e o popup de novo lugar
+const addPopup = document.querySelector("#add-popup"); // Variável da janela de adicionar card (hidden)
+const addButton = document.querySelector("#add-button"); // Botão de adicionar card (+)
+const closeAddButton = document.querySelector("#close-add-popup"); // Botão de fechar popup addcard
+
+// Função / EventListener de abrir o popup de adição de card
+addButton.addEventListener("click", showAddPopup => {
+  addPopup.classList.add("popup__opened");
+})
+
+// Função / EventListener de fechar popup de adição de card
+closeAddButton.addEventListener("click", closeAddPopup => {
+  addPopup.classList.remove("popup__opened");
+});
+
+// -------------------------
+// Adicionar novo lugar
+// -------------------------
+const addForm = document.querySelector("#add-form");
+
+addForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  const nameInput = document.querySelector("#place-input");
+  const linkInput = document.querySelector("#link-input");
+
+  const newCard = createCard(nameInput.value, linkInput.value);
+  cardArea.prepend(newCard);
+
+  // Limpa campos e fecha popup
+  nameInput.value = "";
+  linkInput.value = "";
+  closeAddPopup();
+});
+//-------------------------------------------------------------------------------------
+
+//SEÇÃO ELEMENTES
+
+// Cards iniciais (objeto com as chaves de cada card inicial)
 // -------------------------
 const initialCards = [
   {
@@ -69,24 +109,26 @@ const initialCards = [
 ];
 
 // Seleciona o template e o container de cards
-const template = document.querySelector(".elements__template");
-const cardArea = document.querySelector(".elements__cards");
+const template = document.querySelector(".elements__template"); // Variável de toda seção do template
+const cardArea = document.querySelector(".elements__cards"); // variavel de card inicial (um único)
 
-// Função para criar novo card
+// Função para criar novo card 
 function createCard(name, link) {
-    const cardElement = template.content.querySelector(".elements__card").cloneNode(true);
+  //Variavel  que pega o conteúdo do card para criação de novas variaveis dos elementos dentro do card
+  const cardElement = template.content.querySelector(".elements__card").cloneNode(true); 
 
-  const cardImage = cardElement.querySelector(".elements__image");
-  const cardText = cardElement.querySelector(".elements__text");
-  const cardTrashButton = cardElement.querySelector(".elements__button_type_trash");
-  const cardLikeButton = cardElement.querySelector(".elements__button_type_like");
-  const cardWindow = cardElement.querySelector(".elements__window");
-  const buttonCardImage = cardElement.querySelector(".elements__image-button");
-  const cardWindowImage = cardElement.querySelector(".elements__window-image");
-  const cardWindowName = cardElement.querySelector(".elements__window-name");
-  const windowCloseButton = cardElement.querySelector("#window-close-button");
+  // Variáveis criadas para cada elemento do card
+  const cardImage = cardElement.querySelector(".elements__image"); // Seleciona imagem do card
+  const cardText = cardElement.querySelector(".elements__text"); // Seleciona texto do card
+  const cardTrashButton = cardElement.querySelector(".elements__button_type_trash"); // Seleciona botão de lixeira
+  const cardLikeButton = cardElement.querySelector(".elements__button_type_like"); // Seleciona botão de like
+  const cardWindow = cardElement.querySelector(".elements__window");  // Seleciona 
+  const buttonCardImage = cardElement.querySelector(".elements__image-button"); // Seleciona o botão que envolve a imagem para abri-la
+  const cardWindowImage = cardElement.querySelector(".elements__window-image"); // Seleciona imagem aberta
+  const cardWindowName = cardElement.querySelector(".elements__window-name"); // Seleciona texto da imagem quando aberta
+  const windowCloseButton = cardElement.querySelector("#window-close-button"); // Seleciona botão de fechar da imagem aberta
 
-  // Define conteúdo do card
+  // Define conteúdo do card usando o objeto initial cards
   cardImage.src = link;
   cardImage.alt = name;
   cardText.textContent = name;
@@ -94,7 +136,7 @@ function createCard(name, link) {
   cardWindowImage.alt = name;
   cardWindowName.textContent = name;
 
-  // Evento de deletar
+  // Evento de deletar um card
   cardTrashButton.addEventListener("click", () => cardElement.remove());
 
   // Evento de curtir
@@ -120,46 +162,14 @@ initialCards.forEach(({ name, link }) => {
   const card = createCard(name, link);
   cardArea.append(card);
 });
+//------------------------------------------
 
-// -------------------------
-// Edição de perfil
-// -------------------------
-function changeProfile(evt) {
-  evt.preventDefault();
 
-  const nameInput = document.querySelector(".popup__item_type_name");
-  const aboutInput = document.querySelector(".popup__item_type_about");
-  const profileName = document.querySelector(".profile__name");
-  const profileAbout = document.querySelector(".profile__description");
 
-  profileName.textContent = nameInput.value;
-  profileAbout.textContent = aboutInput.value;
 
-  closeEditPopup();
-}
 
-// Seleciona o botão de enviar do popup de perfil e o formulário do popup
-const submitButton = document.querySelector(".popup__button_type_send");
-const formElement = document.querySelector(".popup__container");
 
-// Adiciona evento de submissão do formulário de perfil para alterar o perfil
-formElement.addEventListener("submit", changeProfile);
 
-// -------------------------
-// Adicionar novo lugar
-// -------------------------
-const addForm = document.querySelector("#add-form");
 
-addForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const nameInput = document.querySelector("#place-input");
-  const linkInput = document.querySelector("#link-input");
 
-  const newCard = createCard(nameInput.value, linkInput.value);
-  cardArea.prepend(newCard);
 
-  // Limpa campos e fecha popup
-  nameInput.value = "";
-  linkInput.value = "";
-  closeAddPopup();
-});
