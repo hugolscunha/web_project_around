@@ -3,41 +3,66 @@
 // Variáveis da sessão profile
 const editProfilePopup = document.querySelector("#profile"); // Variável da janela popup de edição de perfil(hidden)
 const editProfileButton = document.querySelector("#edit-button"); // Botão com simbolo de caneta para abrir popup de edição
-const closeEditButton = editProfilePopup.querySelector(".popup__button_type_close"); // Botão de fechar o popup
+const closeEditButton = editProfilePopup.querySelector(".popup__button_type_close"); // Botão de fechar o popup de edição de perfil
+const formElement = document.querySelector(".popup__form"); // Variável do formulário (tag form) do popup de edição de perfil
+const submitButton = formElement.querySelector(".popup__button_type_send"); // Variável do botão de enviar do popup de edição de perfil
 
-// Função / EventListener de abrir o popup de edição de perfil
-editProfileButton.addEventListener("click", showProfilePopup => {
+const inputs = formElement.querySelectorAll(".popup__item"); // Variável de todos os inputs do popup de edição de perfil
+const nameInput = formElement.querySelector(".popup__item_type_name"); // Variável do input de nome do popup de edição de perfil
+const aboutInput = formElement.querySelector(".popup__item_type_about"); // Variável do input de descrição do popup de edição de perfil
+
+const profileName = document.querySelector(".profile__name"); // Variável do nome do perfil (o que vai aparecer no perfil depois de editado)
+const profileAbout = document.querySelector(".profile__description"); // Variável da descrição do perfil (o que vai aparecer no perfil depois de editado)
+
+// Funções de fechar popup de edição de perfil
+function closeProfilePopup() {
+  editProfilePopup.classList.remove("popup__opened");
+}
+
+// EventListeners de abrir popup de edição de perfil
+editProfileButton.addEventListener("click", () => {
   editProfilePopup.classList.add("popup__opened");
 });
 
-// Função / EventListener de fechar popup de edição de perfil
-closeEditButton.addEventListener("click", closeProfilePopup => {
-  editProfilePopup.classList.remove("popup__opened");
+// EventListener de fechar popup de edição de perfil
+closeEditButton.addEventListener("click", closeProfilePopup);
+
+// Validação dos inputs para ver se mostra o span de erro ou não (chamado pelo forEach dos inputs)
+function validateInput(input) {
+  const errorElement = editProfilePopup.querySelector(
+    `.popup__error_type_${input.name}`
+  )
+  errorElement.textContent = input.validity.valid ? "" : input.validationMessage;
+};
+
+// Verifica se tem algum input inválido para controlar o botão de enviar do popup de edição de perfil
+function hasInvalidInput() {
+ return Array.from(inputs).some((input) => !input.validity.valid);
+}
+
+// Controla botão de enviar do popup de edição de perfil (chamado pelo forEach dos inputs)
+function toggleButtonState() {
+  submitButton.disabled = hasInvalidInput();
+}
+
+// Verfica os inputs a cada digitação para mostrar ou esconder o span de erro e controlar o botão de enviar do popup de edição de perfil
+ inputs.forEach((input)=> {
+  input.addEventListener("input", () => {
+    validateInput(input);
+    toggleButtonState();
+  });
 });
 
-// -------------------------
-// Edição de perfil
-// -------------------------
-
-// Seleciona o botão de enviar do popup de perfil e o formulário do popup
-const submitButton = document.querySelector(".popup__button_type_send");
-const formElement = document.querySelector(".popup__container");
 
 // Adiciona evento de submissão do formulário de perfil para alterar o perfil
-formElement.addEventListener("submit", changeProfile);
-function changeProfile(evt) {
-  evt.preventDefault();
-
-  const nameInput = document.querySelector(".popup__item_type_name");
-  const aboutInput = document.querySelector(".popup__item_type_about");
-  const profileName = document.querySelector(".profile__name");
-  const profileAbout = document.querySelector(".profile__description");
-
+formElement.addEventListener("submit", (evt) => {
+  evt.preventDefault(); // Previne o comportamento padrão de recarregar a página ao enviar o formulário
   profileName.textContent = nameInput.value;
   profileAbout.textContent = aboutInput.value;
+  closeProfilePopup();
+});
 
-  closeEditProfilePopup();
-}
+
 //----------------------------------------------------------------------------------
 
 //SEÇÃO ADD CARD
@@ -163,13 +188,3 @@ initialCards.forEach(({ name, link }) => {
   cardArea.append(card);
 });
 //------------------------------------------
-
-
-
-
-
-
-
-
-
-
