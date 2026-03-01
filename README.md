@@ -17,6 +17,7 @@ O utilizador pode interagir com as fotos, com funcionalidades para adicionar, re
     - Abertura e fechamento de um modal de edição de perfil.
     - Atualização dinâmica do nome e da descrição do perfil.
     - Fechamento do modal ao pressionar a tecla "Esc" ou clicar fora da janela do modal.
+    - Validação de formulários.
 
 - Figma
   - Todo desenvolvimento foi feito com base em layouts feitos no Figma.
