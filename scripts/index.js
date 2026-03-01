@@ -4,15 +4,15 @@
 const editProfilePopup = document.querySelector("#profile"); // Variável da janela popup de edição de perfil(hidden)
 const editProfileButton = document.querySelector("#edit-button"); // Botão com simbolo de caneta para abrir popup de edição
 const closeEditButton = editProfilePopup.querySelector(".popup__button_type_close"); // Botão de fechar o popup de edição de perfil
-const formElement = document.querySelector(".popup__form"); // Variável do formulário (tag form) do popup de edição de perfil
+const formElement = editProfilePopup.querySelector(".popup__form"); // Variável do formulário (tag form) do popup de edição de perfil
 const submitButton = formElement.querySelector(".popup__button_type_send"); // Variável do botão de enviar do popup de edição de perfil
 
-const inputs = formElement.querySelectorAll(".popup__item"); // Variável de todos os inputs do popup de edição de perfil
+const profileInputs = formElement.querySelectorAll(".popup__item"); // Variável de todos os inputs do popup de edição de perfil
 const nameInput = formElement.querySelector(".popup__item_type_name"); // Variável do input de nome do popup de edição de perfil
 const aboutInput = formElement.querySelector(".popup__item_type_about"); // Variável do input de descrição do popup de edição de perfil
 
-const profileName = document.querySelector(".profile__name"); // Variável do nome do perfil (o que vai aparecer no perfil depois de editado)
-const profileAbout = document.querySelector(".profile__description"); // Variável da descrição do perfil (o que vai aparecer no perfil depois de editado)
+const profileName = formElement.querySelector(".profile__name"); // Variável do nome do perfil (o que vai aparecer no perfil depois de editado)
+const profileAbout = formElement.querySelector(".profile__description"); // Variável da descrição do perfil (o que vai aparecer no perfil depois de editado)
 
 // Funções de fechar popup de edição de perfil
 function closeProfilePopup() {
@@ -22,37 +22,19 @@ function closeProfilePopup() {
 // EventListeners de abrir popup de edição de perfil
 editProfileButton.addEventListener("click", () => {
   editProfilePopup.classList.add("popup__opened");
+  toggleButtonState(profileInputs, submitButton); // Verifica o estado do botão de enviar ao abrir o popup para garantir que ele esteja desabilitado se os campos estiverem vazios
 });
 
 // EventListener de fechar popup de edição de perfil
 closeEditButton.addEventListener("click", closeProfilePopup);
 
-// Validação dos inputs para ver se mostra o span de erro ou não (chamado pelo forEach dos inputs)
-function validateInput(input) {
-  const errorElement = editProfilePopup.querySelector(
-    `.popup__error_type_${input.name}`
-  )
-  errorElement.textContent = input.validity.valid ? "" : input.validationMessage;
-};
-
-// Verifica se tem algum input inválido para controlar o botão de enviar do popup de edição de perfil
-function hasInvalidInput() {
- return Array.from(inputs).some((input) => !input.validity.valid);
-}
-
-// Controla botão de enviar do popup de edição de perfil (chamado pelo forEach dos inputs)
-function toggleButtonState() {
-  submitButton.disabled = hasInvalidInput();
-}
-
 // Verfica os inputs a cada digitação para mostrar ou esconder o span de erro e controlar o botão de enviar do popup de edição de perfil
- inputs.forEach((input)=> {
+ profileInputs.forEach((input)=> {
   input.addEventListener("input", () => {
-    validateInput(input);
-    toggleButtonState();
+    validateInput(formElement, input);
+    toggleButtonState(profileInputs, submitButton);
   });
 });
-
 
 // Adiciona evento de submissão do formulário de perfil para alterar o perfil
 formElement.addEventListener("submit", (evt) => {
@@ -62,50 +44,61 @@ formElement.addEventListener("submit", (evt) => {
   closeProfilePopup();
 });
 
-
 //----------------------------------------------------------------------------------
 
 //SEÇÃO ADD CARD
 
-// Seleciona o botão de adicionar lugar e o popup de novo lugar
+// Variáveis da sessão add-card
 const addPopup = document.querySelector("#add-popup"); // Variável da janela de adicionar card (hidden)
 const addButton = document.querySelector("#add-button"); // Botão de adicionar card (+)
-const closeAddButton = document.querySelector("#close-add-popup"); // Botão de fechar popup addcard
+const closeAddButton = addPopup.querySelector(".popup__button_type_close"); // Botão de fechar popup addcard
+const addForm = document.querySelector("#add-form"); // Variável do formulário (tag form) do popup de adição de card
 
-// Função / EventListener de abrir o popup de adição de card
-addButton.addEventListener("click", showAddPopup => {
-  addPopup.classList.add("popup__opened");
-})
+const submitAddButton = addForm.querySelector(".popup__button_type_send"); // Variável do botão de enviar do popup de adição de novo lugar
 
-// Função / EventListener de fechar popup de adição de card
-closeAddButton.addEventListener("click", closeAddPopup => {
+const addInputs = addForm.querySelectorAll(".popup__item"); // Variável de todos os inputs do popup de adição de novo lugar
+const localNameInput = addForm.querySelector(".popup__item_type_name"); // Variável do input de nome do popup de adição de novo lugar
+const linkInput = addForm.querySelector(".popup__item_type_link"); // Variável do input de link da imagem do popup de adição de novo lugar
+
+// Função de fechar popup de adição de card
+function closeAddPopup() {
   addPopup.classList.remove("popup__opened");
+};
+
+// EventListener de abrir o popup de adição de card
+addButton.addEventListener("click", () => {
+  addPopup.classList.add("popup__opened");
+  toggleButtonState(addInputs, submitAddButton); // Verifica o estado do botão de enviar ao abrir o popup para garantir que ele esteja desabilitado se os campos estiverem vazios
 });
 
-// -------------------------
-// Adicionar novo lugar
-// -------------------------
-const addForm = document.querySelector("#add-form");
+// EventListener de fechar popup de adição de card
+closeAddButton.addEventListener("click", closeAddPopup);
 
+// Verfica os inputs a cada digitação para mostrar ou esconder o span de erro e controlar o botão de enviar do popup de edição de perfil
+ addInputs.forEach((input)=> {
+  input.addEventListener("input", () => {
+    validateInput(addForm, input);
+    toggleButtonState(addInputs, submitAddButton);
+  });
+});
+
+// Evento de submissão do formulário de adição de card para criar um novo card
 addForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  const nameInput = document.querySelector("#place-input");
-  const linkInput = document.querySelector("#link-input");
 
-  const newCard = createCard(nameInput.value, linkInput.value);
-  cardArea.prepend(newCard);
+const newCard = createCard(localNameInput.value, linkInput.value);
+cardArea.prepend(newCard);
 
-  // Limpa campos e fecha popup
-  nameInput.value = "";
-  linkInput.value = "";
-  closeAddPopup();
+addForm.requestFullscreen(); // Reseta o formulário para limpar os campos e o estado do botão de enviar
+toggleButtonState(addInputs, submitAddButton); // Reseta o estado do botão de enviar para desabilitado
+closeAddPopup();
 });
+
 //-------------------------------------------------------------------------------------
 
-//SEÇÃO ELEMENTES
+//SESSÃO ELEMENTES
 
 // Cards iniciais (objeto com as chaves de cada card inicial)
-// -------------------------
 const initialCards = [
   {
     name: "Fernando de Noronha",
@@ -188,3 +181,44 @@ initialCards.forEach(({ name, link }) => {
   cardArea.append(card);
 });
 //------------------------------------------
+
+// FUNÇÕES COMUNS PARA OS DOIS FORMULARIOS DE POPUP (EDITAR PERFIL E ADICIONAR CARD)
+
+// COMUM  Validação dos inputs para ver se mostra o span de erro ou não (chamado pelo forEach dos inputs)
+function validateInput(form, input) {
+  const errorElement = form.querySelector(`.popup__error_type_${input.name}`);
+  errorElement.textContent = input.validity.valid ? "" : input.validationMessage;
+};
+
+// COMUM Verifica se tem algum input inválido para controlar o botão de enviar do popup de edição de perfil
+function hasInvalidInput(inputList) {
+ return Array.from(inputList).some(input => !input.validity.valid);
+};
+
+// COMUM Controla botão de enviar do popup de edição de perfil (chamado pelo forEach dos inputs)
+function toggleButtonState(inputList, buttonElement) {
+  buttonElement.disabled = hasInvalidInput(inputList);
+};
+
+// COMUM Fecha o popup ao clicar no overlay (chamado pelos eventListeners de cada popup)
+function handleOverlayClick(evt) {
+  if (evt.target.classList.contains("popup")) {
+    evt.target.classList.remove("popup__opened");
+  }
+}
+
+editProfilePopup.addEventListener("mousedown", handleOverlayClick);
+addPopup.addEventListener("mousedown", handleOverlayClick);
+
+// COMUM Fecha o popup ao clicar na tecla Esc (chamado pelo eventListener de toda a página)
+function handleEscClose(evt) {
+  if (evt.key === "Escape") {
+    document.querySelectorAll(".popup__opened").forEach(popup => {
+      popup.classList.remove("popup__opened");
+    });
+  }
+}
+
+document.addEventListener("keydown", handleEscClose);
+
+//----------------------------------------------------------------------------------

@@ -115,11 +115,13 @@
                 <form class="popup__form" id="add-form">
                     <fieldset class="popup__name" name="new-place">
                         <input class="popup__item popup__item_type_name" id="place-input" type="text" name="place"
-                            placeholder="Título" minlength="2" maxlength="40" required />
-                        <input class="popup__item popup__item_type_about" id="link-input" type="url" name="link"
+                            placeholder="Título" minlength="2" maxlength="30" required />
+                            <span class="popup__error popup__error_type_place"></span>
+                        <input class="popup__item popup__item_type_link" id="link-input" type="url" name="link"
                             placeholder="Link da imagem" required />
+                            <span class="popup__error popup__error_type_link"></span>
                         <button class="popup__button popup__button_type_send" id="add-card-button"
-                            type="submit">Guardar</button>
+                            type="submit" disabled>Guardar</button>
                     </fieldset>
                 </form>
             </div>
